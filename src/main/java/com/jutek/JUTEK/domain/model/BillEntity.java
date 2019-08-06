@@ -1,25 +1,19 @@
 package com.jutek.JUTEK.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "bills")
 public class BillEntity {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long billId;
     private Long addDate;
     private String person;
     private String billValue;
-    private int understanding;
 
 }
