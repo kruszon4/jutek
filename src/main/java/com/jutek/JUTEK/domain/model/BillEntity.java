@@ -1,5 +1,6 @@
 package com.jutek.JUTEK.domain.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "bills")
+@Builder
 public class BillEntity {
 
     @Id

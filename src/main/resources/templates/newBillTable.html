@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Currency Rate Visualizer</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <title>Line Chart</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+</head>
+
+
+<div class="container">
+
+    <div class="row" id="mainTable">
+
+        <form th:action="@{/save}" th:object="${form}" method="post">
+            <fieldset>
+                <table id="myTable">
+                    <tbody>
+                    <div th:object="${nu}">
+
+                        <tr>
+                            <td>Właściciel rachunku:</td>
+                            <td><input th:text="${billOwner}" class="form-control" type="text"
+                                       th:field="*{name}" disabled/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Wartość rachunku:</td>
+                            <td><h3 class="form-control" type="text" th:text="${billValue}"/></td>
+                        </tr>
+
+                    </div>
+
+                    <tr th:each="bill, itemStat : *{bills}">
+                        <td>
+                            <select th:field="*{bills[__${itemStat.index}__].person}" class="form-control">
+                                <option value=""> --</option>
+                                <option th:each="usera : ${nn}"
+                                        th:value="${usera.getUserID()}"
+                                        th:text="${usera.name} + ' ' + ${usera.lastName}"/>
+                            </select>
+                        </td>
+
+                        <td><input class="form-control" type="text"
+                                   th:field="*{bills[__${itemStat.index}__].billValue}"/></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="modal-footer">
+                                <input class="btn btn-primary" type="submit" id="submitButton" th:value="Save">
+                                <input class="btn btn-primary" type="reset" id="resetButton" name="reset"
+                                       th:value="Reset"/>
+                                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

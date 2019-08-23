@@ -16,4 +16,7 @@ public class TransactionEntity {
     private Integer billId;
     private Integer userId;
     private Double transactionValue;
+
+
+
 }
